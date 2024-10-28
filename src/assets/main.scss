@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply bg-gray-100 w-full h-full;
+}
+
+#app {
+    @apply w-full h-dvh;
+}
+
+.arco-layout {
+    @apply w-full h-full;
+}
