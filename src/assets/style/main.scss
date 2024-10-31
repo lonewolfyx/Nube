@@ -1,13 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+    --nube-header-height: 37px;
+}
 
 body {
     @apply bg-gray-100 w-full h-full;
 }
 
 #app {
-    @apply w-full h-dvh;
+    @apply relative w-full h-dvh overflow-hidden;
 }
 
 .arco-layout {
