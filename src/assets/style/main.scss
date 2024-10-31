@@ -2,6 +2,25 @@
     --nube-header-height: 37px;
 }
 
+::-webkit-scrollbar {
+    @apply w-1.5 h-1.5;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(50, 50, 50, .25);
+    border: 2px solid transparent;
+    //border-radius: 10px;
+    background-clip: padding-box
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(50, 50, 50, .5)
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(50, 50, 50, .05)
+}
+
 body {
     @apply bg-gray-100 w-full h-full;
 }

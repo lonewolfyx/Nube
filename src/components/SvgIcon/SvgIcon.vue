@@ -1,5 +1,5 @@
 <template>
-    <svg class="icon-size">
+    <svg class="iconSize" :class="className">
         <use :href="symbolId" class="svg-icon-fill"/>
     </svg>
 </template>
@@ -7,7 +7,7 @@
 <script setup>
 import {computed} from "vue";
 
-const {color, prefix, name} = defineProps({
+const {color, prefix, name, className} = defineProps({
     color: {
         type: String
     },
@@ -18,14 +18,18 @@ const {color, prefix, name} = defineProps({
     name: {
         type: String,
         default: ''
+    },
+    className: {
+        type: String,
+        default: 'w-6 h-6'
     }
 });
 const symbolId = computed(() => `#${prefix}-${name}`)
 </script>
 
 <style scoped lang="scss">
-.icon-size {
-    @apply w-6 h-6;
+.iconSize {
+    @apply mr-1;
 }
 
 .svg-icon-fill {
