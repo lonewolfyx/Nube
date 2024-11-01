@@ -64,7 +64,7 @@ const handleDelete = (event, item) => {
     }
 
     .tips {
-        @apply absolute flex items-center justify-center w-full h-full text-xs text-gray-400 z-20;
+        @apply absolute flex items-center justify-center w-full h-full text-base text-gray-400 z-20;
     }
 }
 
