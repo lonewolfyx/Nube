@@ -1,15 +1,16 @@
 <template>
+    <div>组件按钮{{ designer.config }}{{ content }}</div>
     <div class="edit-container-wrapper">
         <!--                    @choose="choose"-->
         <div class="tips">请从左侧组件库中挑选所需组件，拖拽至此处进行预览与布局调整</div>
         <VueDraggable
-            v-model="list2"
+            v-model="tools"
             :animation="150"
-            group="people"
+            group="render_components"
             ghostClass="move"
             class="edit-container-body"
         >
-            <template v-for="item in list2" :key="item.id">
+            <template v-for="item in tools" :key="item.id">
                 <p
                     :class="{ 'isChoose': item.isChosen }"
                     @click="selectItem(item)"
@@ -22,10 +23,20 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import {computed, ref, watch} from "vue";
 import {VueDraggable} from "vue-draggable-plus";
+import {useDesignerStore} from "@/stores/designer.js";
+import {useRenderComponentStore} from "@/stores/renderComponent.js";
 
-const list2 = ref([])
+const renderComponentStore = useRenderComponentStore();
+const designer = useDesignerStore()
+const content = computed(() => renderComponentStore.components)
+
+
+const tools = ref(renderComponentStore.components)
+watch(tools, (newValue) => {
+    renderComponentStore.setData(newValue)
+})
 
 const choose = (event) => {
     console.log('选中的', event.item.attributes);
@@ -38,16 +49,17 @@ const move = (event) => {
 }
 
 const selectItem = (item) => {
-    list2.value = list2.value.map((i) => ({
+    tools.value = tools.value.map((i) => ({
         ...i,
         isChosen: i.id === item.id,
     }));
 }
 const handleDelete = (event, item) => {
     if (event.key === 'Delete' || event.key === 'Backspace') {
-        list2.value = list2.value.filter((i) => i.id !== item.id);
+        tools.value = tools.value.filter((i) => i.id !== item.id);
     }
 }
+
 </script>
 
 <style scoped lang="scss">
@@ -59,13 +71,14 @@ const handleDelete = (event, item) => {
         @apply m-auto;
     }
 
-    .edit-container-body {
-        @apply relative w-full h-full flex flex-col flex-nowrap bg-slate-200 border rounded border-dotted p-2.5 overflow-y-scroll;
-    }
-
     .tips {
         @apply absolute flex items-center justify-center w-full h-full text-base text-gray-400 z-20;
     }
+
+    .edit-container-body {
+        @apply relative w-full h-full flex flex-col flex-nowrap bg-slate-200 border rounded border-dotted p-2.5 overflow-y-scroll z-30;
+    }
+
 }
 
 .move {

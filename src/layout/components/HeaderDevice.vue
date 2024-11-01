@@ -1,6 +1,6 @@
 <template>
-    <a-radio-group v-model="device" type="button" size="mini">
-        <a-radio value="desktop">
+    <a-radio-group v-model="queryForm.device" type="button" size="mini">
+        <a-radio value="pc">
             <icon-desktop/>
         </a-radio>
         <a-radio value="mobile">
@@ -10,10 +10,11 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import {useDesignerStore} from "@/stores/designer.js";
 
+const designer = useDesignerStore()
+const queryForm = designer.config
 
-const device = ref('desktop');
 
 </script>
 

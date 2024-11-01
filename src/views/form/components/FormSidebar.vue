@@ -1,9 +1,9 @@
 <template>
     <div class="edit-sidebar-wrapper">
         <div class="p-2">
-            <a-form :model="form">
+            <a-form :model="queryForm">
                 <a-form-item field="framework" label="框架" :hide-label="true">
-                    <a-radio-group v-model="form.framework" type="button" size="large">
+                    <a-radio-group v-model="queryForm.framework" type="button" size="large">
                         <a-radio value="vue" class="flex">
                             <SvgIcon name="product-vue" className="w-5 h-5"/>
                             Vue
@@ -15,7 +15,7 @@
                     </a-radio-group>
                 </a-form-item>
                 <a-form-item field="framework" :hide-label="true">
-                    <a-radio-group v-model="form.ui" type="button" size="medium">
+                    <a-radio-group v-model="queryForm.ui" type="button" size="default">
                         <a-radio value="element">
                             <SvgIcon name="product-element-plus"/>
                             Element
@@ -46,20 +46,15 @@
 </template>
 
 <script setup>
-import {reactive, ref} from "vue";
+import {ref} from "vue";
 import SvgIcon from "@/components/SvgIcon/SvgIcon.vue";
-import {VueDraggable} from 'vue-draggable-plus'
 import DraggableComponent from "@/views/form/components/DraggableComponent.vue";
+import {useDesignerStore} from "@/stores/designer.js";
 
 const tabsActive = ref('component');
 
-const form = reactive({
-    name: '',
-    post: '',
-    isRead: false,
-    framework: 'vue',
-    ui: 'element'
-})
+const designer = useDesignerStore()
+const queryForm = designer.config
 </script>
 
 <style scoped lang="scss">

@@ -4,16 +4,17 @@
             v-model="tools"
             :animation="150"
             ghostClass="ghost"
-            :group="{ name: 'people', pull: 'clone', put: false }"
+            :group="{ name: 'render_components', pull: 'clone', put: false }"
             :clone="cloneHandle"
             :sort="false"
             class="grid grid-cols-2 gap-2.5"
+            @end="onDragEnd"
         >
             <div class="" v-for="(item,index) in tools" :key="index">
                 <div class="draggable-item">
-                                <span class="icon">
-                                    <SvgIcon :name="item.icon" :className="item.className"/>
-                                </span>
+                    <span class="icon">
+                        <SvgIcon :name="item.icon" :className="item.className"/>
+                    </span>
                     <span class="name">{{ item.label }}</span>
                 </div>
             </div>
@@ -25,9 +26,10 @@
 
 import SvgIcon from "@/components/SvgIcon/SvgIcon.vue";
 import {VueDraggable} from "vue-draggable-plus";
-import {useDraggableToolBar} from "@/stores/draggableToolBar.js";
-import {computed, markRaw} from "vue";
+import {markRaw} from "vue";
 import {generateUuid} from "@/util/util.js";
+import {useRenderComponentStore} from "@/stores/renderComponent.js";
+
 
 const tools = [
     {id: generateUuid(), label: '输入框', icon: 'input', className: 'w-5 h-5'},
@@ -56,8 +58,7 @@ const tools = [
     {id: generateUuid(), label: '分割线', icon: 'divider', className: 'w-5 h-5'},
 ]
 
-const draggableToolBar = useDraggableToolBar()
-const toolBarList = computed(() => draggableToolBar.toolBarList)
+// 组件拖拽克隆事件
 const cloneHandle = (element) => {
     const id = generateUuid();
     // draggableToolBar.setToolBarList(markRaw({
@@ -66,20 +67,22 @@ const cloneHandle = (element) => {
     //     icon: `${element.icon}-clone-${id}`,
     //     className: `${element.icon}-clone-${id}`,
     // }));
-    console.log(element, JSON.stringify(toolBarList.value))
+    console.log(element)
 
     return markRaw({
         id,
-        label: `${element.label}-clone-${id}`,
+        label: `${element.label}`,
         icon: `${element.icon}-clone-${id}`,
         className: `${element.icon}-clone-${id}`,
     })
 }
+const renderComponentStore = useRenderComponentStore();
 
-// // 拖拽结束
-// const onDragEnd = (event) => {
-//     console.log('onDragEnd', event.data)
-// }
+// 组件拖拽结束
+const onDragEnd = (event) => {
+    // renderComponentStore.setData(event.clonedData)
+    console.log('onDragEnd', event.clonedData)
+}
 </script>
 
 <style scoped lang="scss">
