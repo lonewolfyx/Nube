@@ -10,7 +10,9 @@ npm run dev
 npm run build
 ```
 
-## 支持的功能：
+## 会支持的功能：
 
 * 表单编辑器
 * 大数据可视化编辑器
+
+![Nube 低代码平台](./desktop.jpg)

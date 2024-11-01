@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@arco-design/web-vue": "^2.56.3",
+    "ant-design-vue": "^4.2.5",
+    "element-plus": "^2.8.6",
     "pinia": "^2.2.4",
     "vue": "^3.5.12",
     "vue-draggable-plus": "^0.5.4",
