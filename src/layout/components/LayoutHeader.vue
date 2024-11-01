@@ -6,7 +6,7 @@
                 <img alt="logo" :src="Logo" class="w-5">
                 <a-divider direction="vertical"/>
                 <div>
-                    Nube · 表单低代码平台
+                    Nube · 低代码平台
                 </div>
             </div>
             <div class="">
