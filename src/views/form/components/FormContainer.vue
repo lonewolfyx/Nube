@@ -1,6 +1,7 @@
 <template>
     <div class="edit-container-wrapper">
         <!--                    @choose="choose"-->
+        <div class="tips">请从左侧组件库中挑选所需组件，拖拽至此处进行预览与布局调整</div>
         <VueDraggable
             v-model="list2"
             :animation="150"
@@ -8,7 +9,6 @@
             ghostClass="move"
             class="edit-container-body"
         >
-            <p>内容拖拽区域组件渲染预览</p>
             <template v-for="item in list2" :key="item.id">
                 <p
                     :class="{ 'isChoose': item.isChosen }"
@@ -52,7 +52,7 @@ const handleDelete = (event, item) => {
 
 <style scoped lang="scss">
 .edit-container-wrapper {
-    @apply relative w-full h-full;
+    @apply relative w-full h-full overflow-hidden z-10;
 
     &.is-mobile {
         width: 500px;
@@ -61,6 +61,10 @@ const handleDelete = (event, item) => {
 
     .edit-container-body {
         @apply relative w-full h-full flex flex-col flex-nowrap bg-slate-200 border rounded border-dotted p-2.5 overflow-y-scroll;
+    }
+
+    .tips {
+        @apply absolute flex items-center justify-center w-full h-full text-xs text-gray-400 z-20;
     }
 }
 
