@@ -1,163 +1,35 @@
-import {generateUuid} from "@/util/util.js";
+import InputWidget from "@/components/FormWidget/widget/InputWidget.js";
+import TextareaWidget from "@/components/FormWidget/widget/TextareaWidget.js";
+import RadioWidget from "@/components/FormWidget/widget/RadioWidget.js";
+import CheckboxWidget from "@/components/FormWidget/widget/CheckboxWidget.js";
+import RateWidget from "@/components/FormWidget/widget/RateWidget.js";
+import SelectWidget from "@/components/FormWidget/widget/SelectWidget.js";
+import SliderWidget from "@/components/FormWidget/widget/SliderWidget.js";
+import SwitchWidget from "@/components/FormWidget/widget/SwitchWidget.js";
+import DatePickerWidget from "@/components/FormWidget/widget/DatePickerWidget.js";
+import TimePicker from "@/components/FormWidget/widget/TimePicker.js";
+import NumberInputWidget from "@/components/FormWidget/widget/NumberInputWidget.js";
+import ColorWidget from "@/components/FormWidget/widget/ColorWidget.js";
+import UploadWidget from "@/components/FormWidget/widget/UploadWidget.js";
+import TransferWidget from "@/components/FormWidget/widget/TransferWidget.js";
+import ImageWidget from "@/components/FormWidget/widget/ImageWidget.js";
+import DividerWidget from "@/components/FormWidget/widget/DividerWidget.js";
 
 export default [
-    {
-        id: generateUuid(),
-        label: '输入框',
-        type: 'input',
-        icon: 'input',
-        className: 'w-5 h-5',
-        isChoose: false
-    },
-    {
-        id: generateUuid(),
-        label: '多行输入框',
-        type: 'textarea',
-        icon: 'multi-line',
-        className: 'w-5 h-5',
-        isChoose: false
-    },
-
-    {
-        id: generateUuid(),
-        label: '单选框',
-        type: 'radio',
-        icon: 'radio',
-        className: 'w-5 h-5',
-        isChoose: false
-    },
-    {
-        id: generateUuid(),
-        label: '多选框',
-        type: 'checkbox',
-        icon: 'checkbox',
-        className: 'w-5 h-5',
-        isChoose: false
-    },
-    {
-        id: generateUuid(),
-        label: '评分',
-        type: 'rate',
-        icon: 'rate',
-        className: 'w-5 h-5',
-        isChoose: false
-    },
-    {
-        id: generateUuid(),
-        label: '下拉选择器',
-        type: 'select',
-        icon: 'select',
-        className: 'w-5 h-5',
-        isChoose: false
-    },
-
-
-    {
-        id: generateUuid(),
-        label: '滑块',
-        type: 'slider',
-        icon: 'slider',
-        className: 'w-5 h-5',
-        isChoose: false
-    },
-    {
-        id: generateUuid(),
-        label: '开关',
-        type: 'switch',
-        icon: 'switch',
-        className: 'w-5 h-5',
-        isChoose: false
-    },
-
-
-    {
-        id: generateUuid(),
-        label: '日期选择器',
-        type: 'date-picker',
-        icon: 'date-picker',
-        className: 'w-5 h-5',
-        isChoose: false
-    },
-    {
-        id: generateUuid(),
-        label: '时间选择器',
-        type: 'time-picker',
-        icon: 'time-picker',
-        className: 'w-5 h-5',
-        isChoose: false
-    },
-
-
-    {
-        id: generateUuid(),
-        label: '数字输入框',
-        type: 'number-input',
-        icon: 'number-input',
-        className: 'w-5 h-5',
-        isChoose: false
-    },
-    {
-        id: generateUuid(),
-        label: '取色器',
-        type: 'color',
-        icon: 'color',
-        className: 'w-5 h-5',
-        isChoose: false
-    },
-    {
-        id: generateUuid(),
-        label: '上传',
-        type: 'upload',
-        icon: 'upload',
-        className: 'w-5 h-5',
-        isChoose: false
-    },
-    {
-        id: generateUuid(),
-        label: '穿梭框',
-        type: 'transfer',
-        icon: 'transfer',
-        className: 'w-5 h-5',
-        isChoose: false
-    },
-    {
-        id: generateUuid(),
-        label: '头像',
-        type: 'avatar',
-        icon: 'avatar',
-        className: 'w-5 h-5',
-        isChoose: false
-    },
-    {
-        id: generateUuid(),
-        label: '日历',
-        type: 'calendar',
-        icon: 'calendar',
-        className: 'w-5 h-5',
-        isChoose: false
-    },
-    {
-        id: generateUuid(),
-        label: '图片',
-        type: 'image',
-        icon: 'image',
-        className: 'w-5 h-5',
-        isChoose: false
-    },
-    {
-        id: generateUuid(),
-        label: '标签',
-        type: 'tag',
-        icon: 'tag',
-        className: 'w-5 h-5',
-        isChoose: false
-    },
-    {
-        id: generateUuid(),
-        label: '分割线',
-        type: 'divider',
-        icon: 'divider',
-        className: 'w-5 h-5',
-        isChoose: false
-    }
-]
+    InputWidget,
+    TextareaWidget,
+    RadioWidget,
+    CheckboxWidget,
+    RateWidget,
+    SelectWidget,
+    SliderWidget,
+    SwitchWidget,
+    DatePickerWidget,
+    TimePicker,
+    NumberInputWidget,
+    ColorWidget,
+    UploadWidget,
+    TransferWidget,
+    ImageWidget,
+    DividerWidget
+];

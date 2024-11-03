@@ -1,15 +1,11 @@
 <template>
     <el-form-item label="多行内容">
-        <el-input v-model="fieldValue"/>
+        <el-input v-model="fieldValue" type="textarea"/>
     </el-form-item>
 </template>
 
 <script setup>
 import {ref} from "vue";
-import 'element-plus/es/components/base/style/css';
-import 'element-plus/theme-chalk/el-form.css';
-import 'element-plus/theme-chalk/el-form-item.css';
-import 'element-plus/theme-chalk/el-input.css';
 
 const fieldValue = ref('fieldValue')
 

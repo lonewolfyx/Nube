@@ -21,7 +21,6 @@
                 @click="selectItem(item)"
                 @keydown="handleDelete($event, item)"
             >
-                {{generateComponentName(item.type)}}
                 <component
                     :is="generateComponentName(item.type)"
                 />
@@ -35,13 +34,25 @@ import {VueDraggable} from "vue-draggable-plus";
 import {ref, watch} from "vue";
 import {useRenderComponentStore} from "@/stores/renderComponent.js";
 import {generateComponentName} from "@/util/util.js";
+import {debounce} from "@arco-design/web-vue/es/_utils/debounce.js";
 
 const renderComponentStore = useRenderComponentStore();
 
 const tools = ref(renderComponentStore.components)
-watch(tools, (newValue) => {
-    renderComponentStore.setData(newValue)
-})
+// const tools = computed(() => renderComponentStore.components);
+watch(() => renderComponentStore.components, (newComponents) => {
+    tools.value = newComponents;
+}, {deep: true});
+
+// 使用防抖技术来减少 setData 的调用频率
+const debouncedSetData = debounce((newValue) => {
+    renderComponentStore.setData(newValue);
+}, 300);
+watch(tools, (newValue, oldValue) => {
+    if (JSON.stringify(newValue) !== JSON.stringify(oldValue)) {
+        debouncedSetData(newValue);
+    }
+}, {deep: true});
 
 
 const choose = (event) => {

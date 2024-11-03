@@ -1,5 +1,5 @@
 <template>
-    <a-radio-group v-model="queryForm.device" type="button" size="mini">
+    <a-radio-group v-model="queryForm.device" type="button" size="medium">
         <a-radio value="pc">
             <icon-desktop/>
         </a-radio>

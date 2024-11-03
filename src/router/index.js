@@ -16,11 +16,22 @@ const router = createRouter({
                         {
                             path: 'form',
                             name: 'form',
-                            component: () => import('@/views/form/index.vue')
+                            component: () => import('@/views/form/index.vue'),
+                            meta: {
+                                title: '表单构造器'
+                            }
                         }
                     ]
                 }
             ]
+        },
+        {
+            path: '/review',
+            name: 'review',
+            component: () => import('@/views/review/index.vue'),
+            meta: {
+                title: '表单预览'
+            }
         }
     ]
 })

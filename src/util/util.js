@@ -23,7 +23,9 @@ export const generateUuid = () => {
 export const generateComponentName = (name) => {
     const {ui} = useDesignerStore().config;
     const uiName = ui.charAt(0).toUpperCase() + ui.slice(1);
-    const componentName = name.charAt(0).toUpperCase() + name.slice(1);
+    const componentName = name.split('-')
+        .map(name => name.charAt(0).toUpperCase() + name.slice(1))
+        .join('');
     console.log(uiName + componentName)
     return `${uiName}${componentName}Widget`;
 }

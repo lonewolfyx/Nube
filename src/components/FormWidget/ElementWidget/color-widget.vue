@@ -6,10 +6,6 @@
 
 <script setup>
 import {ref} from "vue";
-import 'element-plus/es/components/base/style/css';
-import 'element-plus/theme-chalk/el-form.css';
-import 'element-plus/theme-chalk/el-form-item.css';
-import 'element-plus/theme-chalk/el-color-picker.css';
 
 const fieldValue = ref('#409EFF')
 

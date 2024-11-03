@@ -1,6 +1,6 @@
 // const modules = import.meta.glob('./widget/**/*.vue')
 
-const element = import.meta.glob('./ElementWidget/**/*.vue')
+const element = import.meta.glob('./ElementWidget/*.vue')
 
 export default {
     install(app) {
