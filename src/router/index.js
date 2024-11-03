@@ -6,12 +6,12 @@ const router = createRouter({
         {
             path: '/',
             name: 'init',
-            redirect: '/build/form',
+            redirect: '/generate/form',
             component: () => import('@/layout/index.vue'),
             children: [
                 {
-                    path: 'build',
-                    name: 'build',
+                    path: 'generate',
+                    name: 'generate',
                     children: [
                         {
                             path: 'form',

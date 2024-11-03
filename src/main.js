@@ -12,6 +12,8 @@ import App from './App.vue'
 import router from './router'
 import '@arco-design/web-vue/dist/arco.css';
 import 'virtual:svg-icons-register'
+import FormWidgetItem from "@/components/FormWidget/FormWidgetItem.js";
+import ElementPlus from 'element-plus'
 
 
 const app = createApp(App)
@@ -22,5 +24,10 @@ pinia.use(piniaPluginPersistedState)
 app.use(router)
 app.use(ArcoVue);
 app.use(ArcoVueIcon);
+
+app.use(ElementPlus)
+
+app.use(FormWidgetItem);
+
 
 app.mount('#app')

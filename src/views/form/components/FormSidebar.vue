@@ -48,7 +48,7 @@
 <script setup>
 import {ref} from "vue";
 import SvgIcon from "@/components/SvgIcon/SvgIcon.vue";
-import DraggableComponent from "@/views/form/components/DraggableComponent.vue";
+import DraggableComponent from "@/views/form/components/DraggableWidget.vue";
 import {useDesignerStore} from "@/stores/designer.js";
 
 const tabsActive = ref('component');
