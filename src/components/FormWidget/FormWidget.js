@@ -1,14 +1,8 @@
 import {generateUuid} from "@/util/util.js";
+import InputWidget from "@/components/FormWidget/widget/InputWidget.js";
 
 export default [
-    {
-        id: generateUuid(),
-        label: '输入框',
-        type: 'input',
-        icon: 'input',
-        className: 'w-5 h-5',
-        isChoose: false
-    },
+    InputWidget,
     {
         id: generateUuid(),
         label: '多行输入框',
