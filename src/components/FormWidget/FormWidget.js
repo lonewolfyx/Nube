@@ -1,16 +1,10 @@
 import {generateUuid} from "@/util/util.js";
 import InputWidget from "@/components/FormWidget/widget/InputWidget.js";
+import TextareaWidget from "@/components/FormWidget/widget/TextareaWidget.js";
 
 export default [
     InputWidget,
-    {
-        id: generateUuid(),
-        label: '多行输入框',
-        type: 'textarea',
-        icon: 'multi-line',
-        className: 'w-5 h-5',
-        isChoose: false
-    },
+    TextareaWidget,
 
     {
         id: generateUuid(),
