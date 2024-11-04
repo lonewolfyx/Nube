@@ -1,19 +1,12 @@
 import {generateUuid} from "@/util/util.js";
 import InputWidget from "@/components/FormWidget/widget/InputWidget.js";
 import TextareaWidget from "@/components/FormWidget/widget/TextareaWidget.js";
+import RadioWidget from "@/components/FormWidget/widget/RadioWidget.js";
 
 export default [
     InputWidget,
     TextareaWidget,
-
-    {
-        id: generateUuid(),
-        label: '单选框',
-        type: 'radio',
-        icon: 'radio',
-        className: 'w-5 h-5',
-        isChoose: false
-    },
+    RadioWidget,
     {
         id: generateUuid(),
         label: '多选框',
