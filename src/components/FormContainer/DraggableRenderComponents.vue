@@ -6,7 +6,7 @@
         ghostClass="move"
         class="edit-container-body"
     >
-        <template v-for="item in tools" :key="item.id">
+        <template v-for="widget in tools" :key="widget.id">
             <!--                <component :is="" />-->
             <!--                {{item}}-->
             <!--                <p-->
@@ -16,13 +16,9 @@
             <!--                    tabindex="0"-->
             <!--                >{{ item }}</p>-->
 
-            <div
-                :class="{ 'isChoose': item.isChoose }"
-                @click="selectItem(item)"
-                @keydown="handleDelete($event, item)"
-            >
-                <component
-                    :is="generateComponentName(item.type)"
+            <div>
+                <ContainerWidget
+                    :widget="widget"
                 />
             </div>
         </template>
@@ -33,8 +29,8 @@
 import {VueDraggable} from "vue-draggable-plus";
 import {ref, watch} from "vue";
 import {useRenderComponentStore} from "@/stores/renderComponent.js";
-import {generateComponentName} from "@/util/util.js";
 import {debounce} from "@arco-design/web-vue/es/_utils/debounce.js";
+import ContainerWidget from "@/components/FormContainer/ContainerWidget.vue";
 
 const renderComponentStore = useRenderComponentStore();
 
@@ -47,7 +43,7 @@ watch(() => renderComponentStore.components, (newComponents) => {
 // 使用防抖技术来减少 setData 的调用频率
 const debouncedSetData = debounce((newValue) => {
     renderComponentStore.setData(newValue);
-}, 300);
+}, 1000);
 watch(tools, (newValue, oldValue) => {
     if (JSON.stringify(newValue) !== JSON.stringify(oldValue)) {
         debouncedSetData(newValue);
@@ -63,18 +59,6 @@ const choose = (event) => {
 }
 const move = (event) => {
     console.log('移动', event)
-}
-
-const selectItem = (item) => {
-    tools.value = tools.value.map((i) => ({
-        ...i,
-        isChoose: i.id === item.id,
-    }));
-}
-const handleDelete = (event, item) => {
-    if (event.key === 'Delete' || event.key === 'Backspace') {
-        tools.value = tools.value.filter((i) => i.id !== item.id);
-    }
 }
 
 </script>

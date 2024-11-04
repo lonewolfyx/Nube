@@ -9,7 +9,7 @@
 
 <script setup>
 
-import LayoutHeader from "@/layout/components/LayoutHeader.vue";
+import LayoutHeader from "@/layout/LayoutHeader.vue";
 </script>
 
 <style scoped lang="scss">

@@ -1,6 +1,6 @@
 <template>
     <svg class="iconSize" :class="className">
-        <use :href="symbolId" class="svg-icon-fill"/>
+        <use :href="symbolId" :class="color?'':'svg-icon-fill'" :fill="color"/>
     </svg>
 </template>
 
