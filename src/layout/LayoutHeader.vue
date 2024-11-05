@@ -10,14 +10,14 @@
                     Nube · 低代码平台
                 </div>
             </div>
-            <div class="">
-                <span class="left">
-                    <SvgIcon name="turn-left" color="#e2e8f0" className="text-xs w-4 h-4"/>
-                </span>
-                <span class="right">
-                    <SvgIcon name="turn-right" color="#fff" className="text-xs w-4 h-4"/>
-                </span>
-            </div>
+<!--            <div class="">-->
+<!--                <span class="left">-->
+<!--                    <SvgIcon name="turn-left" color="#e2e8f0" className="text-xs w-4 h-4"/>-->
+<!--                </span>-->
+<!--                <span class="right">-->
+<!--                    <SvgIcon name="turn-right" color="#fff" className="text-xs w-4 h-4"/>-->
+<!--                </span>-->
+<!--            </div>-->
             <div class="device">
                 <HeaderDevice/>
             </div>
