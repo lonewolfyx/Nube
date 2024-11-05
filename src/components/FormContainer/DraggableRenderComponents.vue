@@ -15,12 +15,9 @@
             <!--                    @keydown="handleDelete($event, item)"-->
             <!--                    tabindex="0"-->
             <!--                >{{ item }}</p>-->
-
-            <div>
-                <ContainerWidget
-                    :widget="widget"
-                />
-            </div>
+            <ContainerWidget
+                :widget="widget"
+            />
         </template>
     </VueDraggable>
 </template>

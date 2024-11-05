@@ -1,61 +1,58 @@
 <template>
     <DividerHeader title="盒模型属性"/>
-    <a-form-item>
-        <div class="box-model">
-            <div class="box-margin">
-                <span class="title">margin</span>
-                <span class="top">
+    <div class="box-model">
+        <div class="box-margin">
+            <span class="title">margin</span>
+            <span class="top">
                 <a-input-number class="input-top" size="mini" :min="0"/>
             </span>
-                <span class="left">
+            <span class="left">
                 <a-input-number class="input-left" size="mini" :min="0"/>
             </span>
-                <span class="bottom">
+            <span class="bottom">
                 <a-input-number class="input-bottom" size="mini" :min="0"/>
             </span>
-                <span class="right">
+            <span class="right">
                 <a-input-number class="input-right" size="mini" :min="0"/>
             </span>
-                <div class="box-border">
-                    <span class="title">border</span>
-                    <span class="top">
+            <div class="box-border">
+                <span class="title">border</span>
+                <span class="top">
                     <a-input-number class="input-top" size="mini" :min="0"/>
                 </span>
-                    <span class="left">
+                <span class="left">
                     <a-input-number class="input-left" size="mini" :min="0"/>
                 </span>
-                    <span class="bottom">
+                <span class="bottom">
                     <a-input-number class="input-bottom" size="mini" :min="0"/>
                 </span>
-                    <span class="right">
+                <span class="right">
                     <a-input-number class="input-right" size="mini" :min="0"/>
                 </span>
-                    <div class="box-padding">
-                        <span class="title">padding</span>
-                        <span class="top">
+                <div class="box-padding">
+                    <span class="title">padding</span>
+                    <span class="top">
                         <a-input-number class="input-top" size="mini" :min="0"/>
                     </span>
-                        <span class="left">
+                    <span class="left">
                         <a-input-number class="input-left" size="mini" :min="0"/>
                     </span>
-                        <span class="bottom">
+                    <span class="bottom">
                         <a-input-number class="input-bottom" size="mini" :min="0"/>
                     </span>
-                        <span class="right">
+                    <span class="right">
                         <a-input-number class="input-right" size="mini" :min="0"/>
                     </span>
-                        <div class="box-content">
-                            <span class="title">content</span>
-                        </div>
+                    <div class="box-content">
+                        <span class="title">content</span>
                     </div>
                 </div>
             </div>
         </div>
-    </a-form-item>
+    </div>
 </template>
 
 <script setup>
-
 import DividerHeader from "@/components/DividerHeader/DividerHeader.vue";
 </script>
 

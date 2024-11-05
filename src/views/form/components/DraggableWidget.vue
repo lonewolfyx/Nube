@@ -10,13 +10,11 @@
             class="grid grid-cols-2 gap-2.5"
             @end="onDragEnd"
         >
-            <div class="" v-for="(item,index) in formWidget" :key="index">
-                <div class="draggable-item">
-                    <span class="icon">
-                        <SvgIcon :name="item.icon" :className="item.className"/>
-                    </span>
-                    <span class="name">{{ item.label }}</span>
-                </div>
+            <div class="draggable-item" v-for="(item,index) in formWidget" :key="index">
+                <span class="icon">
+                    <SvgIcon :name="item.icon" :className="item.className"/>
+                </span>
+                <span class="name">{{ item.label }}</span>
             </div>
         </VueDraggable>
     </div>
@@ -61,7 +59,7 @@ const onDragEnd = (event) => {
 
 <style scoped lang="scss">
 .draggable-item {
-    @apply border rounded border-solid border-slate-300  flex items-center justify-start flex-row text-slate-500 p-2 mb-3;
+    @apply border rounded border-solid border-slate-300  flex items-center justify-start flex-row text-slate-500 p-2 mb-3 cursor-grab;
 
     .icon {
         @apply flex items-center text-slate-500 mr-1.5;

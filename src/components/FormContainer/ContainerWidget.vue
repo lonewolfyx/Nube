@@ -1,10 +1,15 @@
 <template>
-    <component
-        :is="generateComponentName(widget.type)"
-        class="nnnnnn"
-        @click="handleClick"
-        @keydown="handleDelete($event, widget)"
-    />
+    <div
+        class="widget-items"
+    >
+        <component
+            :is="generateComponentName(widget.type)"
+            class="nnnnnn"
+            @click="handleClick"
+            @keydown="handleDelete($event, widget)"
+        />
+        <div class="cover"></div>
+    </div>
 </template>
 
 <script setup>
@@ -35,5 +40,16 @@ const handleDelete = (event, item) => {
 </script>
 
 <style scoped lang="scss">
+.widget-items {
 
+    @apply relative w-full h-auto overflow-hidden border border-dotted border-transparent rounded cursor-grab;
+
+    .cover {
+        @apply absolute w-full h-full z-50 top-0 bg-transparent;
+    }
+
+    &:hover {
+        border-color: rgb(var(--primary-6));
+    }
+}
 </style>
