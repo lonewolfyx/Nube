@@ -6,6 +6,7 @@
         <a-tabs default-active-key="1">
             <a-tab-pane key="1" title="组件设置" class="px-2 pb-4">
                 {{ form }}
+                <BoxModelSetting/>
                 <DividerHeader title="基础设置"/>
                 <a-form :model="form" layout="vertical">
                 </a-form>
@@ -62,6 +63,7 @@
 <script setup>
 import {reactive} from "vue";
 import DividerHeader from "@/components/DividerHeader/DividerHeader.vue";
+import BoxModelSetting from "@/components/FormConfiguration/BoxModelSetting.vue";
 
 const form = reactive({
     name: '',
