@@ -1,23 +1,26 @@
 <template>
     <div
         class="widget-items"
+        tabindex="0"
+        @click="handleClick(widget,widgetIndex)"
+        @keydown="handleDelete($event, widget)"
     >
         <component
             :is="generateComponentName(widget.type)"
             class="nnnnnn"
-            @click="handleClick"
-            @keydown="handleDelete($event, widget)"
         />
-        <div class="cover"></div>
+        <div class="cover"/>
     </div>
 </template>
 
 <script setup>
 import {generateComponentName} from "@/util/util.js";
 import {useRenderComponentStore} from "@/stores/renderComponent.js";
+import {useDesignerStore} from "@/stores/designer.js";
 
-const {widget} = defineProps(['widget']);
+const {widget, widgetIndex} = defineProps(['widget', 'widgetIndex']);
 
+const designer = useDesignerStore()
 // const selectItem = (item) => {
 //     tools.value = tools.value.map((i) => ({
 //         ...i,
@@ -26,15 +29,19 @@ const {widget} = defineProps(['widget']);
 // }
 
 // 选中当前组件
-const handleClick = (event) => {
-    console.log(event.target.parent)
+const handleClick = (event, index) => {
+    console.log(event, index);
+    designer.setSelectWidgetIndex(index)
 }
 
 const renderComponent = useRenderComponentStore()
 // 删除当前组件
 const handleDelete = (event, item) => {
+    // console.log(event, item)
     if (event.key === 'Delete' || event.key === 'Backspace') {
         renderComponent.setData(renderComponent.components.filter((i) => i.id !== item.id));
+        const index = designer.config.selectIndex - 1;
+        designer.setSelectWidgetIndex(index <= 0 ? renderComponent.components.length : index)
     }
 }
 </script>

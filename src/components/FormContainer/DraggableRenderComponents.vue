@@ -6,7 +6,7 @@
         ghostClass="move"
         class="edit-container-body"
     >
-        <template v-for="widget in tools" :key="widget.id">
+        <template v-for="(widget,index) in tools" :key="widget.id">
             <!--                <component :is="" />-->
             <!--                {{item}}-->
             <!--                <p-->
@@ -17,6 +17,7 @@
             <!--                >{{ item }}</p>-->
             <ContainerWidget
                 :widget="widget"
+                :widgetIndex="index"
             />
         </template>
     </VueDraggable>
