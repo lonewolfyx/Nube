@@ -2,14 +2,14 @@
     <a-layout class="layout-demo">
         <LayoutHeader/>
         <a-layout class="nube-container">
-            <RouterView/>
-<!--            <router-view v-slot="{ Component, route }">-->
-<!--                <transition name="fade-transform" mode="out-in">-->
-<!--                    <keep-alive>-->
-<!--                        <component :is="Component" :key="route.path"/>-->
-<!--                    </keep-alive>-->
-<!--                </transition>-->
-<!--            </router-view>-->
+            <!--            <RouterView/>-->
+            <router-view v-slot="{ Component, route }">
+                <transition name="fade-transform" mode="out-in">
+                    <keep-alive>
+                        <component :is="Component" :key="route.path"/>
+                    </keep-alive>
+                </transition>
+            </router-view>
         </a-layout>
     </a-layout>
 </template>
