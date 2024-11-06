@@ -1,10 +1,8 @@
-// const modules = import.meta.glob('./widget/**/*.vue')
-
 const element = import.meta.glob('./ElementWidget/*.vue')
 
 export default {
     install(app) {
-        console.log(Object.keys(element).length)
+        // console.log(Object.keys(element).length)
         if (Object.keys(element).length > 0) {
             for (const path in element) {
                 element[path]().then((module) => {

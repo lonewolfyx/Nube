@@ -14,6 +14,7 @@ import router from './router'
 import '@arco-design/web-vue/dist/arco.css';
 import 'virtual:svg-icons-register'
 import FormWidgetItem from "@/components/FormWidget/FormWidgetItem.js";
+import AntdFormWidgetItem from "@/components/FormWidget/AntdFormWidgetItem.js";
 
 
 const app = createApp(App)
@@ -28,6 +29,7 @@ app.use(ArcoVueIcon);
 app.use(ElementPlus);
 
 app.use(FormWidgetItem);
-
+// 注册antd组件
+app.use(AntdFormWidgetItem);
 
 app.mount('#app')

@@ -5,7 +5,24 @@
         <!--        </a-card>-->
         <a-tabs default-active-key="1">
             <a-tab-pane key="1" title="组件设置" class="px-2 pb-4">
-                {{ content[selectIndex] }}
+                <!--                                {{ form }}-->
+                <!--                {{ rule ? 'y' : 'n' }}-->
+                <a-form
+                    :model="form"
+                    layout="horizontal"
+                    auto-label-width
+                    size="medium"
+                    label-align="left"
+                >
+
+                    <a-form-item label="组件 ID" v-if="currentWidget">
+                        <a-input v-model="currentWidget.id" disabled/>
+                    </a-form-item>
+                    <template v-for="(_,index) in config">
+                        {{ generateEditComponentName(index) }}-{{ index }}-edit
+                        <component :is="editComponent[generateEditComponentName(index)]" :options="form"/>
+                    </template>
+                </a-form>
                 <!--                <BoxModelSetting/>-->
                 <!--                <DividerHeader title="基础设置"/>-->
                 <!--                <a-form :model="form" layout="vertical">-->
@@ -61,18 +78,34 @@
 </template>
 
 <script setup>
-import {computed, reactive} from "vue";
+import {computed, nextTick, shallowRef} from "vue";
 import {useDesignerStore} from "@/stores/designer.js";
 import {useRenderComponentStore} from "@/stores/renderComponent.js";
+import {registerEditComponents} from "@/components/FormWidgetEdit/FormWidgetEdit.js";
+import {generateEditComponentName} from "@/util/util.js";
 
 const designer = useDesignerStore()
 const renderComponentStore = useRenderComponentStore()
+
 const selectIndex = computed(() => designer.config.selectIndex)
-const content = computed(() => renderComponentStore.components)
-const form = reactive({
-    name: '',
-    post: '',
-    isRead: false,
+const content = computed(() => renderComponentStore.components);
+const currentWidget = computed(() => content.value[selectIndex.value]);
+const config = computed(() => currentWidget.value?.config);
+const rule = computed(() => currentWidget.value?.rule);
+
+const editComponent = shallowRef({});
+nextTick(async () => {
+    editComponent.value = await registerEditComponents()
+    // console.log('注册的编辑组件', JSON.stringify(editComponent.value))
+})
+const form = computed({
+    get() {
+        // console.log(config.value)
+        return config.value || {};
+    },
+    set(newValue) {
+        console.log('编辑后新的数据值：', newValue)
+    }
 });
 const handleSubmit = (data) => {
     console.log(data);

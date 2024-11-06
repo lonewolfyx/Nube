@@ -1,14 +1,20 @@
 <template>
-    <el-form-item label="单行内容">
-        <el-input v-model="fieldValue"/>
+    <el-form-item :label="field.label">
+        <el-input
+            v-model="field.value"
+            :placeholder="field.placeholder"
+            :maxlength="field.maxlength"
+            :minlength="field.minlength"
+            :clearable="field.clearable"
+            :disabled="field.disabled"
+            :size="field.size"
+            :show-password="field.showPassword"
+        />
     </el-form-item>
 </template>
 
 <script setup>
-
-import {ref} from "vue";
-
-const fieldValue = ref('fieldValue')
+const {field} = defineProps(['field'])
 </script>
 
 <style scoped lang="scss">

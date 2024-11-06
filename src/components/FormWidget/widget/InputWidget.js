@@ -8,25 +8,16 @@ export default {
     className: 'w-5 h-5',
     isChoose: false,
     value: '',
-    config: [
-        {
-            label: '标签文本',
-            value: 'label',
-            type: 'input',
-            element: false,
-        },
-        {
-            label: '表单域标签的位置',
-            value: 'label-position',
-        },
-        {
-            label: '标签宽度',
-            value: 'label-width'
-        },
-        {
-            label: '是否必填项',
-            value: 'required'
-        }
-    ],
-    rules: []
+    config: {
+        inputType: 'text',
+        label: '输入框',
+        placeholder: '请输入......',
+        value: '',
+        maxlength: 0,
+        minlength: 0,
+        clearable: false,
+        disabled: false,
+        size: 'default',
+        showPassword: false,
+    }
 }

@@ -9,7 +9,7 @@
         >
             <component
                 :is="generateComponentName(widget.type)"
-                :widget="widget"
+                :field="widget.config"
             />
             <div class="cover"/>
         </div>

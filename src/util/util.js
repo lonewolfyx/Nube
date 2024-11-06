@@ -26,6 +26,11 @@ export const generateComponentName = (name) => {
     const componentName = name.split('-')
         .map(name => name.charAt(0).toUpperCase() + name.slice(1))
         .join('');
-    console.log(uiName + componentName)
+    // console.log(uiName + componentName)
     return `${uiName}${componentName}Widget`;
+}
+
+// 生成注册的编辑组件名称
+export const generateEditComponentName = (name) => {
+    return name.charAt(0).toUpperCase() + name.slice(1) + 'Edit';
 }
