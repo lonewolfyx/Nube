@@ -3,11 +3,11 @@
     <div class="edit-container-wrapper">
         <!--                    @choose="choose"-->
         <div class="tips">请从左侧组件库中挑选所需组件，拖拽至此处进行预览与布局调整</div>
-        <template v-if="designer.config.ui==='element'">
+        <template v-if="designer.config.ui === 'element'">
             <ElementPlus/>
         </template>
-        <template v-else-if="designer.config.ui==='antd'">这是 antd 的表单</template>
-        <template v-else-if="designer.config.ui==='arco'">这是 arco 的表单</template>
+        <template v-else-if="designer.config.ui === 'antd'">这是 antd 的表单</template>
+        <template v-else-if="designer.config.ui === 'arco'">这是 arco 的表单</template>
     </div>
 </template>
 
@@ -30,7 +30,7 @@ const content = computed(() => renderComponentStore.components)
 }
 
 .edit-container-wrapper {
-    @apply relative w-full h-full overflow-hidden z-10;
+    @apply relative w-full h-full overflow-hidden z-10 overflow-y-scroll;
 
     &.is-mobile {
         width: 500px;

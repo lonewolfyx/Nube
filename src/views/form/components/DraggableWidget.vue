@@ -26,8 +26,8 @@ import SvgIcon from "@/components/SvgIcon/SvgIcon.vue";
 import {VueDraggable} from "vue-draggable-plus";
 import {markRaw} from "vue";
 import {generateUuid} from "@/util/util.js";
-import {useRenderComponentStore} from "@/stores/renderComponent.js";
 import formWidget from "@/components/FormWidget/FormWidget.js";
+import {useDesigner} from "@/hooks/designer.js";
 
 // 组件拖拽克隆事件
 const cloneHandle = (element) => {
@@ -38,7 +38,7 @@ const cloneHandle = (element) => {
     //     icon: `${element.icon}-clone-${id}`,
     //     className: `${element.icon}-clone-${id}`,
     // }));
-    console.log(element)
+    // console.log(element)
 
     return markRaw({
         ...element,
@@ -48,12 +48,12 @@ const cloneHandle = (element) => {
         }
     })
 }
-const renderComponentStore = useRenderComponentStore();
 
 // 组件拖拽结束
 const onDragEnd = (event) => {
+    useDesigner().changeSelectWidgetIndex(event.newIndex)
     // renderComponentStore.setData(event.clonedData)
-    console.log('onDragEnd', event.clonedData)
+    console.log('onDragEnd', event)
 }
 </script>
 
