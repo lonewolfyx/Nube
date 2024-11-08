@@ -1,20 +1,37 @@
 import {defineStore} from "pinia";
-import {ref} from "vue";
+import {useDesignerStore} from "@/stores/designer.js";
+import emitter from "@/util/eventBus.js";
 
-// 组件拖拽存储
-export const useRenderComponentStore = defineStore('RenderComponent', () => {
-    const components = ref([]); // 使用 ref 创建响应式数据
+export const useRenderComponentStore = defineStore('RenderComponent', {
+    state: () => ({
+        components: [],
 
-    const setData = (newComponent) => {
-        components.value = newComponent;
-    }
-
-    // 在创建 store 时加载数据
-    // loadFromLocalStorage();
-
-    return {components, setData};
-
-
-}, {
+    }),
+    actions: {
+        addData(components, index) {
+            this.components.splice(index, 0, components)
+        },
+        updateData(components, index) {
+            if (components) {
+                if (index || index === 0) {
+                    // console.log('更新咯', components);
+                    this.components[index] = components;
+                } else {
+                    this.components = [...components]
+                }
+            }
+        },
+        clear() {
+            this.components = [];
+            console.log('更新数据值')
+            useDesignerStore().setSelectWidgetIndex(0, false);
+            emitter.emit('clear', {clear: true});
+        }
+    },
+    subscribe: (store, afterChange, beforeChange) => {
+        if (afterChange.components) {
+            // console.log('编辑后新的数据值：', afterChange.components);
+        }
+    },
     persist: true
 })

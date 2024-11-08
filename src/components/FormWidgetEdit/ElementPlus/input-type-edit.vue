@@ -1,6 +1,9 @@
 <template>
     <a-form-item label="类型">
-        <a-switch type="round" v-model="options.clearable"/>
+        <a-radio-group type="button" v-model="options.inputType">
+            <a-radio value="text">文本</a-radio>
+            <a-radio value="password">密码</a-radio>
+        </a-radio-group>
     </a-form-item>
 </template>
 

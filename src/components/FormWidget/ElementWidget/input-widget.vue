@@ -1,5 +1,9 @@
 <template>
-    <el-form-item :label="field.label">
+    <el-form-item
+        :label="field.label"
+        :label-position="field.labelPosition"
+        :label-width="field.labelWidth"
+    >
         <el-input
             v-model="field.value"
             :placeholder="field.placeholder"
@@ -9,6 +13,7 @@
             :disabled="field.disabled"
             :size="field.size"
             :show-password="field.showPassword"
+            :type="field.inputType"
         />
     </el-form-item>
 </template>

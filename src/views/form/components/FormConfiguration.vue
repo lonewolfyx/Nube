@@ -5,39 +5,29 @@
         <!--        </a-card>-->
         <a-tabs default-active-key="1">
             <a-tab-pane key="1" title="组件设置" class="px-2 pb-4">
-                <!--                                {{ form }}-->
-                <!--                {{ rule ? 'y' : 'n' }}-->
                 <a-form
-                    :model="form"
+                    :model="currentWidget"
                     layout="horizontal"
                     auto-label-width
                     size="medium"
                     label-align="left"
+                    v-if="currentWidget.config"
+                    ref="configurationRef"
                 >
-
-                    <a-form-item label="组件 ID" v-if="currentWidget">
+                    <DividerHeader title="基础设置"/>
+                    <a-form-item label="组件 ID">
                         <a-input v-model="currentWidget.id" disabled/>
                     </a-form-item>
-                    <template v-for="(_,index) in config">
-                        {{ generateEditComponentName(index) }}-{{ index }}-edit
-                        <component :is="editComponent[generateEditComponentName(index)]" :options="form"/>
+                    <template v-for="(_,index) in currentWidget.config">
+                        <!--                        &lt;!&ndash;                        &lt;!&ndash;                        {{ generateEditComponentName(index) }}-{{ index }}-edit&ndash;&gt;&ndash;&gt;-->
+                        <!--                        &lt;!&ndash;                        {{ generateEditComponentName(index) }}&ndash;&gt;-->
+                        <component
+                            :is="editComponent[generateEditComponentName(index)]"
+                            :options="currentWidget.config"
+                        />
                     </template>
+                    <!--                    <LabelEdit v-if="currentWidget" :options="currentWidget.config"/>-->
                 </a-form>
-                <!--                <BoxModelSetting/>-->
-                <!--                <DividerHeader title="基础设置"/>-->
-                <!--                <a-form :model="form" layout="vertical">-->
-                <!--                </a-form>-->
-                <!--                <a-form :model="form" auto-label-width>-->
-                <!--                    <a-form-item field="name" tooltip="Please enter username" label="标签的文本">-->
-                <!--                        <a-input-->
-                <!--                            v-model="form.name"-->
-                <!--                            placeholder="请输入标签文本"-->
-                <!--                        />-->
-                <!--                    </a-form-item>-->
-                <!--                    <a-form-item field="isRead" label="是否禁用">-->
-                <!--                        <a-switch v-model="form.isRead" type="round"/>-->
-                <!--                    </a-form-item>-->
-                <!--                </a-form>-->
                 <!--                <DividerHeader title="规则校验"/>-->
                 <!--                <a-form :model="form" auto-label-width>-->
                 <!--                    <a-tabs position="left" class="mb-8">-->
@@ -78,38 +68,86 @@
 </template>
 
 <script setup>
-import {computed, nextTick, shallowRef} from "vue";
+import {defineComponent, nextTick, onMounted, ref, shallowRef, useTemplateRef, watch} from "vue";
 import {useDesignerStore} from "@/stores/designer.js";
-import {useRenderComponentStore} from "@/stores/renderComponent.js";
-import {registerEditComponents} from "@/components/FormWidgetEdit/FormWidgetEdit.js";
+import LabelEdit from "@/components/FormWidgetEdit/label-edit.vue";
+import emitter from "@/util/eventBus.js";
+import {useDesigner} from "@/hooks/designer.js";
+import {cloneDeep, debounce} from "lodash-es";
+import DividerHeader from "@/components/DividerHeader/DividerHeader.vue";
 import {generateEditComponentName} from "@/util/util.js";
+import {registerEditComponents} from "@/components/FormWidgetEdit/FormWidgetEdit.js";
 
+defineComponent({
+    name: 'FormConfiguration',
+    components: {
+        LabelEdit
+    }
+})
 const designer = useDesignerStore()
-const renderComponentStore = useRenderComponentStore()
+const configurationRef = useTemplateRef('configurationRef')
+// const renderComponentStore = useRenderComponentStore()
 
-const selectIndex = computed(() => designer.config.selectIndex)
-const content = computed(() => renderComponentStore.components);
-const currentWidget = computed(() => content.value[selectIndex.value]);
-const config = computed(() => currentWidget.value?.config);
-const rule = computed(() => currentWidget.value?.rule);
+const selectIndex = ref(designer.config.selectIndex)
+// const widgetList = computed(() => useDesigner().getWidgetList())
 
 const editComponent = shallowRef({});
+
+const currentWidget = ref({});
+
+// 是否是清空的数据
+const isClear = ref(false)
+// 是否是初始化的数据
+const isInitData = ref(false)
+// 是否是曝光的数据
+const isEmitterData = ref(false)
+
+onMounted(() => {
+    emitter.on('clear', (e) => {
+        isClear.value = true
+        currentWidget.value = {}
+        console.log('做清空事件了')
+    });
+
+    emitter.on('selectIndex', async (index) => {
+        selectIndex.value = index
+        console.log('选中的次序是', index);
+        isEmitterData.value = true;
+        await nextTick()
+        currentWidget.value = cloneDeep(useDesigner().getWidgetList()[index] || {})
+        console.log(currentWidget.value)
+    });
+
+});
+
 nextTick(async () => {
-    editComponent.value = await registerEditComponents()
-    // console.log('注册的编辑组件', JSON.stringify(editComponent.value))
-})
-const form = computed({
-    get() {
-        // console.log(config.value)
-        return config.value || {};
-    },
-    set(newValue) {
-        console.log('编辑后新的数据值：', newValue)
+    editComponent.value = await registerEditComponents();
+
+    if (useDesigner().getWidgetList().length >= 1) {
+        console.log('有初始数据', selectIndex.value, useDesigner().getWidgetList())
+        currentWidget.value = cloneDeep(useDesigner().getWidgetList()[selectIndex.value] || {})
+        isInitData.value = true;
     }
 });
-const handleSubmit = (data) => {
-    console.log(data);
-};
+
+
+// 监听 currentWidget 的变动
+watch(() => currentWidget.value.config, debounce((newValue, oldValue) => {
+    if (isEmitterData.value || isInitData.value || isClear.value) {
+        isEmitterData.value = false;
+        isInitData.value = false;
+        isClear.value = false;
+        return '';
+    }
+    console.log('来自 configuration 更新数据', newValue, oldValue)
+    // currentWidget.value
+    useDesigner().updateWidgetAtIndex(currentWidget.value, selectIndex.value)
+    emitter.emit('hasNewWidgetList')
+
+}, 300), { // 300 毫秒内如果没有新的变化，则执行回调
+    deep: true,
+});
+
 </script>
 
 <style scoped lang="scss">

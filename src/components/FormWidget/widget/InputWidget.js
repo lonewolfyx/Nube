@@ -19,5 +19,7 @@ export default {
         disabled: false,
         size: 'default',
         showPassword: false,
+        labelPosition: '',
+        labelWidth: ''
     }
 }

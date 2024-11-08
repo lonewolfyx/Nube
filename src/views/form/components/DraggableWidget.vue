@@ -18,13 +18,13 @@
             </div>
         </VueDraggable>
     </div>
-</template>
+</template>g
 
 <script setup>
 
 import SvgIcon from "@/components/SvgIcon/SvgIcon.vue";
 import {VueDraggable} from "vue-draggable-plus";
-import {markRaw} from "vue";
+import {markRaw, nextTick} from "vue";
 import {generateUuid} from "@/util/util.js";
 import formWidget from "@/components/FormWidget/FormWidget.js";
 import {useDesigner} from "@/hooks/designer.js";
@@ -50,10 +50,13 @@ const cloneHandle = (element) => {
 }
 
 // 组件拖拽结束
-const onDragEnd = (event) => {
+const onDragEnd = async (event) => {
+    // await nextTick();
+    useDesigner().addWidget(event.clonedData, event.newIndex)
+    await nextTick();
     useDesigner().changeSelectWidgetIndex(event.newIndex)
     // renderComponentStore.setData(event.clonedData)
-    console.log('onDragEnd', event)
+    // console.log('onDragEnd', event)
 }
 </script>
 

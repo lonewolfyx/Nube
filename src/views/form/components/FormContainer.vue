@@ -12,14 +12,10 @@
 </template>
 
 <script setup>
-import {computed} from "vue";
 import {useDesignerStore} from "@/stores/designer.js";
-import {useRenderComponentStore} from "@/stores/renderComponent.js";
 import ElementPlus from "@/components/FormContainer/ElementPlus.vue";
 
-const renderComponentStore = useRenderComponentStore();
 const designer = useDesignerStore()
-const content = computed(() => renderComponentStore.components)
 
 
 </script>
