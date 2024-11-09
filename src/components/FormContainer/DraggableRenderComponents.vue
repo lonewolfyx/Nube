@@ -39,7 +39,7 @@
 
 <script setup>
 import {VueDraggable} from "vue-draggable-plus";
-import {generateComponentName} from "@/util/util.js";
+import {generateComponentName, generateUuid} from "@/util/util.js";
 import {useDesignerStore} from "@/stores/designer.js";
 import {computed, nextTick, onMounted, ref} from "vue";
 import {useDesigner} from "@/hooks/designer.js";
@@ -61,27 +61,27 @@ onMounted(() => {
     });
 
     emitter.on('hasNewWidgetList', () => {
-        console.log('有新数据过来咯')
+        // console.log('有新数据过来咯')
         tools.value = cloneDeep(useDesigner().getWidgetList());
     });
 })
 
 // 拖拽元素改变位置时触发
 const handleChange = (e) => {
-    console.log('组件发生顺序变动了', e, tools.value);
+    // console.log('组件发生顺序变动了', e, tools.value);
     useDesigner().changeSelectWidgetIndex(e.newIndex);
     useDesigner().updateWidgetList(tools.value)
 }
 
 // 选中当前组件
 const handleClick = (event, index) => {
-    console.log('选中了第', index)
+    // console.log('选中了第', index)
     useDesigner().changeSelectWidgetIndex(index)
 }
 
 // 删除当前组件
 const handleDelete = (event, item, index) => {
-    console.log(event, item, index, selectIndex.value)
+    // console.log(event, item, index, selectIndex.value)
     if (event.key === 'Delete' || event.key === 'Backspace') {
         tools.value = tools.value.filter(i => i.id !== item.id);
         const widgetIndex = selectIndex - 1;
@@ -94,7 +94,11 @@ const handleDelete = (event, item, index) => {
 // 复制事件
 const handleCopy = async (event, index) => {
     const widgetIndex = index + 1;
-    tools.value.splice(widgetIndex, 0, event);
+    tools.value.splice(widgetIndex, 0, {
+        ...event, ...{
+            id: generateUuid()
+        }
+    });
     // console.log('在第几个后添加相同的组件', tools.value, index)
     useDesigner().updateWidgetList(tools.value)
     await nextTick()

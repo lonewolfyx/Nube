@@ -106,16 +106,16 @@ onMounted(() => {
     emitter.on('clear', (e) => {
         isClear.value = true
         currentWidget.value = {}
-        console.log('做清空事件了')
+        // console.log('做清空事件了')
     });
 
     emitter.on('selectIndex', async (index) => {
         selectIndex.value = index
-        console.log('选中的次序是', index);
+        // console.log('选中的次序是', index);
         isEmitterData.value = true;
         await nextTick()
         currentWidget.value = cloneDeep(useDesigner().getWidgetList()[index] || {})
-        console.log(currentWidget.value)
+        // console.log(currentWidget.value)
     });
 
 });
@@ -124,7 +124,7 @@ nextTick(async () => {
     editComponent.value = await registerEditComponents();
 
     if (useDesigner().getWidgetList().length >= 1) {
-        console.log('有初始数据', selectIndex.value, useDesigner().getWidgetList())
+        // console.log('有初始数据', selectIndex.value, useDesigner().getWidgetList())
         currentWidget.value = cloneDeep(useDesigner().getWidgetList()[selectIndex.value] || {})
         isInitData.value = true;
     }
@@ -139,7 +139,7 @@ watch(() => currentWidget.value.config, debounce((newValue, oldValue) => {
         isClear.value = false;
         return '';
     }
-    console.log('来自 configuration 更新数据', newValue, oldValue)
+    // console.log('来自 configuration 更新数据', newValue, oldValue)
     // currentWidget.value
     useDesigner().updateWidgetAtIndex(currentWidget.value, selectIndex.value)
     emitter.emit('hasNewWidgetList')

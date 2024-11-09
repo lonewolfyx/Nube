@@ -18,7 +18,7 @@ const addWidget = (widget, index) => {
 }
 // 更新组件列表 · 配合防抖使用
 const updateWidgetList = (widgetList) => {
-    console.log(widgetList)
+    // console.log(widgetList)
     renderComponentStore.updateData(widgetList, false);
 }
 

@@ -23,7 +23,7 @@ export const useRenderComponentStore = defineStore('RenderComponent', {
         },
         clear() {
             this.components = [];
-            console.log('更新数据值')
+            // console.log('更新数据值')
             useDesignerStore().setSelectWidgetIndex(0, false);
             emitter.emit('clear', {clear: true});
         }
