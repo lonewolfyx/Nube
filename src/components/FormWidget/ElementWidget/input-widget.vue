@@ -4,7 +4,7 @@
         :label-position="field.labelPosition"
         :label-width="field.labelWidth"
         :prop="field.prop"
-        :required="field.rule.required"
+        :required="rule.required"
     >
         <el-input
             v-model="field.value"
@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-const {field} = defineProps(['field']);
+const {field, rule} = defineProps(['field', 'rule']);
 
 // const checkAge = (rule, value, callback) => {
 //     if (!value) {

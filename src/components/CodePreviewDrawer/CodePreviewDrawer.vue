@@ -6,6 +6,7 @@
         @cancel="changeShowStatus"
         title="预览"
         unmountOnClose
+        :footer="false"
     >
         <template v-for="(item,index) in widget" :key="item.id">
             <keep-alive>

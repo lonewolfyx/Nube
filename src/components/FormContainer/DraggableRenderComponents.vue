@@ -114,7 +114,7 @@ const emitterUpdateWidgetList = debounce(() => {
 
 <style scoped lang="scss">
 .edit-container-body {
-    @apply relative w-full h-auto min-h-full flex flex-col flex-nowrap bg-slate-200 border rounded border-dotted p-2.5 z-30;
+    @apply relative w-full h-auto min-h-full flex flex-col flex-nowrap bg-slate-200 border rounded border-dotted p-2.5;
 }
 
 

@@ -2,7 +2,9 @@
     <!--    <div>组件按钮{{ designer.config }}{{ content }}</div>-->
     <div class="edit-container-wrapper">
         <!--                    @choose="choose"-->
-        <div class="tips">请从左侧组件库中挑选所需组件，拖拽至此处进行预览与布局调整</div>
+        <template v-if="useDesigner().getWidgetList().length === 0">
+            <div class="tips">请从左侧组件库中挑选所需组件，拖拽至此处进行预览与布局调整</div>
+        </template>
         <template v-if="designer.config.ui === 'element'">
             <ElementPlus/>
         </template>
@@ -17,6 +19,7 @@
 import {useDesignerStore} from "@/stores/designer.js";
 import ElementPlus from "@/components/FormContainer/ElementPlus.vue";
 import Arco from "@/components/FormContainer/Arco.vue";
+import {useDesigner} from "@/hooks/designer.js";
 
 const designer = useDesignerStore()
 
