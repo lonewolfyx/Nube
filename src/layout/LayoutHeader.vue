@@ -29,7 +29,7 @@
                         </template>
                         <template #default>清空</template>
                     </a-button>
-                    <a-button size="small" @click="outCodeDrawerRef.handleClick()">
+                    <a-button size="small" @click="codePreviewRef.showCode()">
                         <template #icon>
                             <icon-code/>
                         </template>
@@ -52,6 +52,7 @@
         </div>
     </a-layout-header>
     <OutCodeDrawer ref="outCodeDrawerRef"/>
+    <CodePreviewDrawer ref="codePreviewRef"/>
 </template>
 
 <script setup>
@@ -60,8 +61,10 @@ import {ref, useTemplateRef} from "vue";
 import HeaderDevice from "@/layout/HeaderDevice.vue";
 import OutCodeDrawer from "@/components/OutCodeDrawer/OutCodeDrawer.vue";
 import {useDesigner} from "@/hooks/designer.js";
+import CodePreviewDrawer from "@/components/CodePreviewDrawer/CodePreviewDrawer.vue";
 
 const outCodeDrawerRef = useTemplateRef('outCodeDrawerRef');
+const codePreviewRef = useTemplateRef('codePreviewRef');
 const device = ref('desktop');
 
 </script>
