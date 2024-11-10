@@ -8,10 +8,8 @@
 </template>
 
 <script setup>
-import {defineComponent} from "vue";
-
-defineComponent({
-    name: 'input-type'
+defineOptions({
+    name: 'input-type-edit'
 });
 const {options} = defineProps(['options'])
 

@@ -11,6 +11,7 @@ export default {
     config: {
         inputType: 'text',
         label: '输入框',
+        prop: '',
         placeholder: '请输入......',
         value: '',
         maxlength: 0,
@@ -21,5 +22,15 @@ export default {
         showPassword: false,
         labelPosition: '',
         labelWidth: ''
+    },
+    rule: {
+        required: false,
+        trigger: ['blur'],
+        type: 'string',
+        message: '',
+        minlength: 0,
+        maxlength: 0,
+        lengthMessage: '',
+        rules: []
     }
 }

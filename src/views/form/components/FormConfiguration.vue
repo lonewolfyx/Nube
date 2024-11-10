@@ -4,10 +4,9 @@
         <!--            组件功能配置模块中心-->
         <!--        </a-card>-->
         <a-tabs default-active-key="1">
-            <a-tab-pane key="1" title="组件设置" class="px-2 pb-4">
+            <a-tab-pane key="1" title="组件设置" class="px-5 pb-4">
                 <a-form
                     :model="currentWidget"
-                    layout="horizontal"
                     auto-label-width
                     size="medium"
                     label-align="left"
@@ -19,45 +18,29 @@
                         <a-input v-model="currentWidget.id" disabled/>
                     </a-form-item>
                     <template v-for="(_,index) in currentWidget.config">
-                        <!--                        &lt;!&ndash;                        &lt;!&ndash;                        {{ generateEditComponentName(index) }}-{{ index }}-edit&ndash;&gt;&ndash;&gt;-->
-                        <!--                        &lt;!&ndash;                        {{ generateEditComponentName(index) }}&ndash;&gt;-->
+<!--                        {{_}}-->
+                        <!--                        {{ generateEditComponentName(index) }}-{{ index }}-edit-->
+<!--                        {{ generateEditComponentName(index) }}-->
                         <component
                             :is="editComponent[generateEditComponentName(index)]"
                             :options="currentWidget.config"
                         />
                     </template>
-                    <!--                    <LabelEdit v-if="currentWidget" :options="currentWidget.config"/>-->
                 </a-form>
-                <!--                <DividerHeader title="规则校验"/>-->
-                <!--                <a-form :model="form" auto-label-width>-->
-                <!--                    <a-tabs position="left" class="mb-8">-->
-                <!--                        <a-tab-pane key="1" title="规则一">-->
-                <!--                            <a-form-item field="isRead" label="校验类型">-->
-                <!--                                <a-select placeholder="请选择校验类型">-->
-                <!--                                    <a-option>Beijing</a-option>-->
-                <!--                                    <a-option>Shanghai</a-option>-->
-                <!--                                    <a-option>自定义</a-option>-->
-                <!--                                </a-select>-->
-                <!--                            </a-form-item>-->
-                <!--                            <a-form-item field="isRead" label="是否禁用">-->
-                <!--                                <a-switch v-model="form.isRead" type="round"/>-->
-                <!--                            </a-form-item>-->
-                <!--                            <a-form-item field="isRead" label="是否禁用">-->
-                <!--                                <a-switch v-model="form.isRead" type="round"/>-->
-                <!--                            </a-form-item>-->
-                <!--                            <a-form-item field="isRead" label="是否禁用">-->
-                <!--                                <a-switch v-model="form.isRead" type="round"/>-->
-                <!--                            </a-form-item>-->
-                <!--                        </a-tab-pane>-->
-                <!--                        <a-tab-pane key="2" title="规则二">-->
-                <!--                            Content of Tab Panel 2-->
-                <!--                        </a-tab-pane>-->
-                <!--                        <a-tab-pane key="3" title="规则三">-->
-                <!--                            Content of Tab Panel 3-->
-                <!--                        </a-tab-pane>-->
-                <!--                    </a-tabs>-->
-                <!--                </a-form>-->
-                <!--                <a-button long>添加规则</a-button>-->
+                <a-form
+                    :model="currentWidget.rule"
+                    auto-label-width
+                    size="medium"
+                    label-align="left"
+                    v-if="currentWidget.rule"
+                    ref="ruleFormRef"
+                >
+                    <DividerHeader title="规则校验"/>
+                    <component
+                        :is="editComponent[generateEditComponentName('rule')]"
+                        :options="currentWidget.rule"
+                    />
+                </a-form>
             </a-tab-pane>
             <a-tab-pane key="2" title="表单设置" class="px-6">
                 Content of Tab Panel 2
@@ -85,7 +68,8 @@ defineComponent({
     }
 })
 const designer = useDesignerStore()
-const configurationRef = useTemplateRef('configurationRef')
+const configurationRef = useTemplateRef('configurationRef');
+const ruleFormRef = useTemplateRef('ruleFormRef')
 // const renderComponentStore = useRenderComponentStore()
 
 const selectIndex = ref(designer.config.selectIndex)
@@ -101,6 +85,16 @@ const isClear = ref(false)
 const isInitData = ref(false)
 // 是否是曝光的数据
 const isEmitterData = ref(false)
+
+nextTick(async () => {
+    editComponent.value = await registerEditComponents();
+
+    if (useDesigner().getWidgetList().length >= 1) {
+        // console.log('有初始数据', selectIndex.value, useDesigner().getWidgetList())
+        currentWidget.value = cloneDeep(useDesigner().getWidgetList()[selectIndex.value] || {})
+        isInitData.value = true;
+    }
+});
 
 onMounted(() => {
     emitter.on('clear', (e) => {
@@ -120,19 +114,11 @@ onMounted(() => {
 
 });
 
-nextTick(async () => {
-    editComponent.value = await registerEditComponents();
-
-    if (useDesigner().getWidgetList().length >= 1) {
-        // console.log('有初始数据', selectIndex.value, useDesigner().getWidgetList())
-        currentWidget.value = cloneDeep(useDesigner().getWidgetList()[selectIndex.value] || {})
-        isInitData.value = true;
-    }
-});
-
-
-// 监听 currentWidget 的变动
-watch(() => currentWidget.value.config, debounce((newValue, oldValue) => {
+// 监听 currentWidget.value.config 的变动
+watch(() => ({
+    config: currentWidget.value.config,
+    rule: currentWidget.value.rule
+}), debounce((newValue, oldValue) => {
     if (isEmitterData.value || isInitData.value || isClear.value) {
         isEmitterData.value = false;
         isInitData.value = false;
@@ -152,6 +138,7 @@ watch(() => currentWidget.value.config, debounce((newValue, oldValue) => {
 
 <style scoped lang="scss">
 .edit-configuration-wrapper {
+    max-width: 22.5rem;
     @apply relative h-full bg-white overflow-y-scroll;
 }
 </style>

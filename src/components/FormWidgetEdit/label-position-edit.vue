@@ -9,11 +9,10 @@
 </template>
 
 <script setup>
-import {defineComponent} from "vue";
-
-defineComponent({
-    name: 'label-position'
+defineOptions({
+    name: 'label-position-edit'
 });
+
 const {options} = defineProps(['options'])
 
 

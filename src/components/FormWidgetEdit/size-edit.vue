@@ -9,6 +9,10 @@
 </template>
 
 <script setup>
+defineOptions({
+    name: 'size-edit'
+});
+
 const {options} = defineProps(['options'])
 </script>
 

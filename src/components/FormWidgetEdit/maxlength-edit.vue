@@ -5,6 +5,10 @@
 </template>
 
 <script setup>
+defineOptions({
+    name: 'maxlength-edit'
+});
+
 const {options} = defineProps(['options'])
 </script>
 

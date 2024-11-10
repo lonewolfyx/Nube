@@ -5,6 +5,10 @@
 </template>
 
 <script setup>
+defineOptions({
+    name: 'clearable-edit'
+});
+
 const {options} = defineProps(['options'])
 </script>
 

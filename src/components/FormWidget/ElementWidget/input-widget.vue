@@ -19,7 +19,40 @@
 </template>
 
 <script setup>
-const {field} = defineProps(['field'])
+const {field} = defineProps(['field']);
+
+// const checkAge = (rule, value, callback) => {
+//     if (!value) {
+//         return callback(new Error('Please input the age'))
+//     }
+//     setTimeout(() => {
+//         if (!Number.isInteger(value)) {
+//             callback(new Error('Please input digits'))
+//         } else {
+//             if (value < 18) {
+//                 callback(new Error('Age must be greater than 18'))
+//             } else {
+//                 callback()
+//             }
+//         }
+//     }, 1000)
+//     callback()
+// }
+
+// { validator: checkAge, trigger: 'blur' }
+const rules = [
+    {
+        required: true,
+        message: 'Please input email address',
+        trigger: 'blur',
+    },
+    {
+        type: 'email',
+        message: 'Please input correct email address',
+        trigger: ['blur', 'change'],
+    },
+];
+
 </script>
 
 <style scoped lang="scss">

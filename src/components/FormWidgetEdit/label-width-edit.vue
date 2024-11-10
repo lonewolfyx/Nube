@@ -5,11 +5,10 @@
 </template>
 
 <script setup>
-import {defineComponent} from "vue";
-
-defineComponent({
-    name: 'label-width'
+defineOptions({
+    name: 'label-width-edit'
 });
+
 const {options} = defineProps(['options'])
 
 

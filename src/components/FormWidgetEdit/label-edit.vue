@@ -5,6 +5,10 @@
 </template>
 
 <script setup>
+defineOptions({
+    name: 'label-edit'
+});
+
 const {options} = defineProps(['options'])
 </script>
 

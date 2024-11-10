@@ -5,6 +5,10 @@
 </template>
 
 <script setup>
+defineOptions({
+    name: 'disable-edit'
+});
+
 const {options} = defineProps(['options'])
 </script>
 

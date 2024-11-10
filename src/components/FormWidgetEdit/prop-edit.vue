@@ -1,12 +1,12 @@
 <template>
-    <a-form-item label="显示切换密码图标">
-        <a-switch type="round" v-model="options.showPassword"/>
+    <a-form-item label="属性值" required>
+        <a-input v-model="options.prop"/>
     </a-form-item>
 </template>
 
 <script setup>
 defineOptions({
-    name: 'showPassword-edit'
+    name: 'prop-edit'
 });
 
 const {options} = defineProps(['options'])

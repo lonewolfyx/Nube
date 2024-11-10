@@ -5,6 +5,10 @@
 </template>
 
 <script setup>
+defineOptions({
+    name: 'minlength-edit'
+});
+
 const {options} = defineProps(['options'])
 </script>
 
