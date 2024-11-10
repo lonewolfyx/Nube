@@ -18,6 +18,7 @@ import DividerWidget from "@/components/FormWidget/widget/DividerWidget.js";
 export default [
     InputWidget,
     TextareaWidget,
+    NumberInputWidget,
     RadioWidget,
     CheckboxWidget,
     RateWidget,
@@ -26,7 +27,6 @@ export default [
     SwitchWidget,
     DatePickerWidget,
     TimePickerWidget,
-    NumberInputWidget,
     ColorWidget,
     UploadWidget,
     TransferWidget,

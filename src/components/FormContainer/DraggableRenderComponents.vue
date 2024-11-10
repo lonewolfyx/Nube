@@ -19,6 +19,7 @@
                     <component
                         :is="generateComponentName(widget.type)"
                         :field="widget.config"
+                        :rule="widget.rule"
                     />
                     <div class="cover"/>
                 </div>

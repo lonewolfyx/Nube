@@ -7,13 +7,16 @@
             <ElementPlus/>
         </template>
         <template v-else-if="designer.config.ui === 'antd'">这是 antd 的表单</template>
-        <template v-else-if="designer.config.ui === 'arco'">这是 arco 的表单</template>
+        <template v-else-if="designer.config.ui === 'arco'">
+            <Arco/>
+        </template>
     </div>
 </template>
 
 <script setup>
 import {useDesignerStore} from "@/stores/designer.js";
 import ElementPlus from "@/components/FormContainer/ElementPlus.vue";
+import Arco from "@/components/FormContainer/Arco.vue";
 
 const designer = useDesignerStore()
 

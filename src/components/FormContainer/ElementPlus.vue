@@ -34,7 +34,7 @@ import 'element-plus/theme-chalk/el-time-select.css';
 import 'element-plus/theme-chalk/el-transfer.css';
 import 'element-plus/theme-chalk/el-upload.css';
 import 'element-plus/theme-chalk/el-progress.css';
-import DraggableRenderComponents from "@/components/FormContainer/DraggableRenderComponents.vue"; // 导入 el-input 样式
+import DraggableRenderComponents from "@/components/FormContainer/DraggableRenderComponents.vue";
 </script>
 
 <style scoped lang="scss">

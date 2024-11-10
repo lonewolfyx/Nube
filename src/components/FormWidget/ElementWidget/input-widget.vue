@@ -3,6 +3,8 @@
         :label="field.label"
         :label-position="field.labelPosition"
         :label-width="field.labelWidth"
+        :prop="field.prop"
+        :required="field.rule.required"
     >
         <el-input
             v-model="field.value"
