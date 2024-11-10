@@ -24,18 +24,6 @@
         </template>
     </div>
 
-    <!--    <div class="rule-item-list">-->
-    <!--        <a-form-item label="最小长度" class="rule-item">-->
-    <!--            <a-input-number placeholder="最小长度" mode="button" v-model="options.minlength"/>-->
-    <!--        </a-form-item>-->
-    <!--        <a-form-item label="最大长度" class="rule-item">-->
-    <!--            <a-input-number placeholder="最大长度" mode="button" v-model="options.maxlength"/>-->
-    <!--        </a-form-item>-->
-    <!--        <a-form-item label="提示信息" class="rule-item">-->
-    <!--            <a-input type="round" v-model="options.lengthMessage"/>-->
-    <!--        </a-form-item>-->
-    <!--    </div>-->
-
     <template v-for="rule in options.rules" :key="rule.id">
         <div class="rule-item-list">
             <div class="delete-item" @click="handleDelete(rule)">
@@ -66,6 +54,7 @@
                 <a-input type="round" v-model="rule.message"/>
             </a-form-item>
             {{ rule }}
+
         </div>
     </template>
 
@@ -73,6 +62,8 @@
 </template>
 
 <script setup>
+// TODO 这里的校验规则还未完善
+
 import {generateUuid} from "@/util/util.js";
 
 defineOptions({
