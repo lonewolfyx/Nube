@@ -16,6 +16,7 @@
                 />
             </keep-alive>
         </template>
+        test
     </a-drawer>
 </template>
 
