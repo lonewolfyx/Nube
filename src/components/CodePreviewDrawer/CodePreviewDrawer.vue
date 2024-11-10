@@ -7,7 +7,7 @@
         title="预览"
         unmountOnClose
     >
-        <template v-for="(item,index) in widget" :key="widget.id">
+        <template v-for="(item,index) in widget" :key="item.id">
             <keep-alive>
                 <component
                     :is="generateComponentName(item.type)"
