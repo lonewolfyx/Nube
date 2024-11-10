@@ -8,7 +8,7 @@
         unmountOnClose
         :footer="false"
     >
-        <template v-for="(item,index) in widget" :key="item.id">
+        <template v-for="item in widget" :key="item.id">
             <keep-alive>
                 <component
                     :is="generateComponentName(item.type)"
