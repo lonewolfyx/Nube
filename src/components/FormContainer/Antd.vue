@@ -1,31 +1,26 @@
 <template>
-    <a-form
-        :model="form"
+    <antd-form
+        :model="{}"
         class="h-full bg-white"
-        auto-label-width
+        labelAlign="left"
     >
         <DraggableRenderComponents/>
-    </a-form>
-
+    </antd-form>
 </template>
 
 <script setup>
-import {reactive} from "vue";
 import DraggableRenderComponents from "@/components/FormContainer/DraggableRenderComponents.vue";
+import {reactive} from "vue";
 
 defineOptions({
-    name: 'arco-container'
+    name: 'antd-container'
 });
 
 const form = reactive({
     name: '',
-    post: '',
-    isRead: '',
 });
-const handleSubmit = (data) => {
-    console.log(data);
-};
 </script>
 
 <style scoped lang="scss">
+
 </style>

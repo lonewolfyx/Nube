@@ -35,6 +35,10 @@ import 'element-plus/theme-chalk/el-transfer.css';
 import 'element-plus/theme-chalk/el-upload.css';
 import 'element-plus/theme-chalk/el-progress.css';
 import DraggableRenderComponents from "@/components/FormContainer/DraggableRenderComponents.vue";
+
+defineOptions({
+    name: 'element-container'
+});
 </script>
 
 <style scoped lang="scss">

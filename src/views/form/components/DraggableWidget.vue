@@ -50,10 +50,10 @@ const cloneHandle = (element) => {
 }
 
 // 组件拖拽结束
-const onDragEnd = async (event) => {
+const onDragEnd = (event) => {
     // await nextTick();
     useDesigner().addWidget(event.clonedData, event.newIndex)
-    await nextTick();
+    // await nextTick();
     useDesigner().changeSelectWidgetIndex(event.newIndex)
     // renderComponentStore.setData(event.clonedData)
     // console.log('onDragEnd', event)

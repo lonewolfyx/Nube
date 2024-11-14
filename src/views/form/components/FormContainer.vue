@@ -8,7 +8,9 @@
         <template v-if="designer.config.ui === 'element'">
             <ElementPlus/>
         </template>
-        <template v-else-if="designer.config.ui === 'antd'">这是 antd 的表单</template>
+        <template v-else-if="designer.config.ui === 'antd'">
+            <Antd/>
+        </template>
         <template v-else-if="designer.config.ui === 'arco'">
             <Arco/>
         </template>
@@ -20,6 +22,7 @@ import {useDesignerStore} from "@/stores/designer.js";
 import ElementPlus from "@/components/FormContainer/ElementPlus.vue";
 import Arco from "@/components/FormContainer/Arco.vue";
 import {useDesigner} from "@/hooks/designer.js";
+import Antd from "@/components/FormContainer/Antd.vue";
 
 const designer = useDesignerStore()
 

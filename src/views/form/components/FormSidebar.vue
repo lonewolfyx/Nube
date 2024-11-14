@@ -2,23 +2,27 @@
     <div class="edit-sidebar-wrapper">
         <div class="p-2">
             <a-form :model="queryForm" auto-label-width>
-                <!--                <a-form-item field="framework" label="框架" :hide-label="true">-->
-                <!--                    <a-radio-group v-model="queryForm.framework" type="button" size="large">-->
-                <!--                        <a-radio value="vue" class="flex">-->
-                <!--                            <SvgIcon name="product-vue" className="w-5 h-5"/>-->
-                <!--                            Vue-->
-                <!--                        </a-radio>-->
-                <!--                        <a-radio value="react">-->
-                <!--                            <SvgIcon name="product-react" className="w-5 h-5"/>-->
-                <!--                            React-->
-                <!--                        </a-radio>-->
-                <!--                    </a-radio-group>-->
-                <!--                </a-form-item>-->
+                <a-form-item field="framework" label="框架">
+                    <a-radio-group v-model="queryForm.framework" type="button" size="large">
+                        <a-radio value="vue" class="flex">
+                            <SvgIcon name="product-vue" className="w-5 h-5"/>
+                            Vue
+                        </a-radio>
+                        <a-radio value="react" disabled >
+                            <SvgIcon name="product-react" className="w-5 h-5"/>
+                            React
+                        </a-radio>
+                    </a-radio-group>
+                </a-form-item>
                 <a-form-item field="framework" label="Ui 组件库">
                     <a-radio-group v-model="queryForm.ui" type="button" size="default">
                         <a-radio value="element">
-                            <SvgIcon name="product-element-plus"/>
+                            <SvgIcon name="product-element-plus" className="w-4 h-4"/>
                             Element
+                        </a-radio>
+                        <a-radio value="antd">
+                            <SvgIcon name="product-antd" className="w-4 h-4"/>
+                            Antd
                         </a-radio>
                         <a-radio value="arco">
                             <SvgIcon name="product-arco" className="w-4 h-4"/>

@@ -1,6 +1,6 @@
 const element = import.meta.glob('./ElementWidget/*.vue');
 const arco = import.meta.glob('./ArcoWidget/*.vue');
-
+const antd = import.meta.glob('./AntdWidget/*.vue');
 const registerComponents = (app, ui, widget) => {
     if (Object.keys(widget).length > 0) {
         for (const path in widget) {
@@ -24,5 +24,6 @@ export default {
         // console.log(Object.keys(element).length)
         registerComponents(app, 'element', element);
         registerComponents(app, 'arco', arco);
+        registerComponents(app, 'antd', antd);
     },
 };
