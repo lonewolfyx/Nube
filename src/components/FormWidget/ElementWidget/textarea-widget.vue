@@ -1,13 +1,22 @@
 <template>
-    <el-form-item label="多行内容">
-        <el-input v-model="fieldValue" type="textarea"/>
+    <el-form-item
+        :label="field.label"
+        :label-position="field.labelPosition"
+        :label-width="field.labelWidth"
+        :prop="field.prop"
+        :required="rule.required"
+    >
+        <el-input
+            v-model="field.value"
+            :placeholder="field.placeholder"
+            type="textarea"
+        />
     </el-form-item>
 </template>
 
 <script setup>
-import {ref} from "vue";
 
-const fieldValue = ref('fieldValue')
+const {field, rule} = defineProps(['field', 'rule']);
 
 </script>
 

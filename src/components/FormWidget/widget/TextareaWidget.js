@@ -13,5 +13,11 @@ export default {
         prop: '',
         placeholder: '请输入文本内容',
         value: '',
+        labelPosition: '',
+        labelWidth: ''
+    },
+
+    rule: {
+        required: false,
     }
 }
